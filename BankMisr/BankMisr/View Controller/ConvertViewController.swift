@@ -49,20 +49,3 @@ class CurrencyConverterViewController: UIViewController {
         
     }
 }
-
-
-extension Double {
-    func round(to places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
-    }
-}
-
-extension Optional where Wrapped == String {
-    func isNil() -> Bool {
-        return self == nil
-    }
-    func isNilOrEmpty() -> Bool {
-        return self == nil || self == ""
-    }
-}
