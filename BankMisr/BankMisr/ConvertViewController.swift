@@ -42,14 +42,13 @@ class CurrencyConverterViewController: UIViewController {
         toTextField.rx.controlEvent([.editingChanged])
             .asObservable().subscribe({ [unowned self] _ in
                 if !(self.toTextField.text.isNilOrEmpty()) {
-                let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: 2, toCurrency: 1 , value : Double(self.toTextField.text!)!)
-                self.fromTextField.text = "\(answer.round(to: 2))"
+                    let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: 2, toCurrency: 1 , value : Double(self.toTextField.text!)!)
+                    self.fromTextField.text = "\(answer.round(to: 2))"
                 }
             }).disposed(by: disposeBag)
         
     }
 }
-
 
 
 extension Double {
