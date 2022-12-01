@@ -6,6 +6,8 @@ target 'BankMisr' do
   use_frameworks!
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxGesture'
+  pod 'DropDown'
 
   # Pods for BankMisr
 
