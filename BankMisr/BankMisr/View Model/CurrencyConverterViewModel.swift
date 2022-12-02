@@ -7,20 +7,20 @@
 
 import Foundation
 
-class CurrencyConverterViewModel : NSObject {
+class CurrencyConverterViewModel : BMBaseViewModel {
     
     private var currencyModelArray = [CurrencyModel]()
     
-    override init() {
-        super.init()
+    override init(repository: RepositoryProtocol) {
+        super.init(repository: repository)
         initilzeCurrencyModel()
     }
     
     private func initilzeCurrencyModel(){
         
         currencyModelArray.append(CurrencyModel(currencyId: 1, name: "Pakistani Rupees" , value: 0.1))
-        currencyModelArray.append(CurrencyModel(currencyId: 2,name: "egyptian pound" , value: 0.2))
-        currencyModelArray.append(CurrencyModel(currencyId: 3,name: "USA Dollar" , value: 4.0))
+        currencyModelArray.append(CurrencyModel(currencyId: 2, name: "egyptian pound" , value: 0.2))
+        currencyModelArray.append(CurrencyModel(currencyId: 3, name: "USA Dollar" , value: 4.0))
     }
     
     func getCurrencyListName() -> [String] {
@@ -35,9 +35,8 @@ class CurrencyConverterViewModel : NSObject {
         return answer
     }
     
-    
     func getCurrencyId(fromName name : String) -> Int {
-       return  currencyModelArray.filter({$0.name == name}).first!.currencyId
+        return  currencyModelArray.filter({$0.name == name}).first!.currencyId
         
     }
     

@@ -15,6 +15,10 @@
 		9C1697042939456000D858AF /* Keys-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C1697032939456000D858AF /* Keys-Info.plist */; };
 		9C1697062939464000D858AF /* URLCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1697052939464000D858AF /* URLCreator.swift */; };
 		9C169708293947AE00D858AF /* APIRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C169707293947AE00D858AF /* APIRoutes.swift */; };
+		9C16970A2939F7ED00D858AF /* TodoCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1697092939F7ED00D858AF /* TodoCodable.swift */; };
+		9C16970C2939F8CC00D858AF /* TodoListCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C16970B2939F8CC00D858AF /* TodoListCodable.swift */; };
+		9C16970E293A034C00D858AF /* BMBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C16970D293A034C00D858AF /* BMBaseViewModel.swift */; };
+		9C169710293A03D700D858AF /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C16970F293A03D700D858AF /* Repository.swift */; };
 		9C982F7929379474003D2FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7829379474003D2FB6 /* AppDelegate.swift */; };
 		9C982F7B29379474003D2FB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7A29379474003D2FB6 /* SceneDelegate.swift */; };
 		9C982F7D29379474003D2FB6 /* ConvertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7C29379474003D2FB6 /* ConvertViewController.swift */; };
@@ -36,6 +40,10 @@
 		9C1697032939456000D858AF /* Keys-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Keys-Info.plist"; sourceTree = "<group>"; };
 		9C1697052939464000D858AF /* URLCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCreator.swift; sourceTree = "<group>"; };
 		9C169707293947AE00D858AF /* APIRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoutes.swift; sourceTree = "<group>"; };
+		9C1697092939F7ED00D858AF /* TodoCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCodable.swift; sourceTree = "<group>"; };
+		9C16970B2939F8CC00D858AF /* TodoListCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCodable.swift; sourceTree = "<group>"; };
+		9C16970D293A034C00D858AF /* BMBaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMBaseViewModel.swift; sourceTree = "<group>"; };
+		9C16970F293A03D700D858AF /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		9C982F7529379474003D2FB6 /* BankMisr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankMisr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C982F7829379474003D2FB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C982F7A29379474003D2FB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				9C1696FA29393CD300D858AF /* APICall.swift */,
+				9C16970F293A03D700D858AF /* Repository.swift */,
 				9C1696FD29393E0300D858AF /* HttpStatusCode.swift */,
 				9C1696FF29393F7500D858AF /* Const.swift */,
 				9C1697012939437100D858AF /* BMError.swift */,
@@ -118,6 +127,8 @@
 				9C982F7829379474003D2FB6 /* AppDelegate.swift */,
 				9C1697032939456000D858AF /* Keys-Info.plist */,
 				9C982F7A29379474003D2FB6 /* SceneDelegate.swift */,
+				9C1697092939F7ED00D858AF /* TodoCodable.swift */,
+				9C16970B2939F8CC00D858AF /* TodoListCodable.swift */,
 				9C1696FC29393DFA00D858AF /* API */,
 				9CD86FE2293803D7002246CC /* Extension */,
 				9CD86FDD29380352002246CC /* View Controller */,
@@ -143,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				9C982F8C2937A7E2003D2FB6 /* CurrencyConverterViewModel.swift */,
+				9C16970D293A034C00D858AF /* BMBaseViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -286,12 +298,16 @@
 				9CD86FE1293803B0002246CC /* Double+Extension.swift in Sources */,
 				9C982F7D29379474003D2FB6 /* ConvertViewController.swift in Sources */,
 				9C982F7929379474003D2FB6 /* AppDelegate.swift in Sources */,
+				9C16970E293A034C00D858AF /* BMBaseViewModel.swift in Sources */,
 				9CD86FDF29380399002246CC /* String+Extension.swift in Sources */,
 				9C1696FB29393CD300D858AF /* APICall.swift in Sources */,
 				9C1696FE29393E0300D858AF /* HttpStatusCode.swift in Sources */,
 				9C982F7B29379474003D2FB6 /* SceneDelegate.swift in Sources */,
 				9C1697022939437100D858AF /* BMError.swift in Sources */,
+				9C169710293A03D700D858AF /* Repository.swift in Sources */,
 				9C1697062939464000D858AF /* URLCreator.swift in Sources */,
+				9C16970C2939F8CC00D858AF /* TodoListCodable.swift in Sources */,
+				9C16970A2939F7ED00D858AF /* TodoCodable.swift in Sources */,
 				9C16970029393F7500D858AF /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,8 +34,9 @@ class CurrencyConverterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        callAPI()
         // Do any additional setup after loading the view.
-        self.currencyConverterViewModel =  CurrencyConverterViewModel()
+        self.currencyConverterViewModel =  CurrencyConverterViewModel(repository: Repository.shared)
         
         setCurrencyDropDown()
         
@@ -76,7 +77,18 @@ class CurrencyConverterViewController: UIViewController {
         
     }
     
-    //MARK: - Actions
+    //MARK: - Test
+    func callAPI() {
+        let apiRequest = ApiCall<TodoCodable>(url: URLCreator.getTodo(todoNumber: "1"), successHandler: {  (todoCoeable: TodoCodable) -> Void  in
+            
+          print(todoCoeable)
+            
+        }) { (httpStatusCode: HttpStatusCode, errorMessage: BMError?) in
+        }
+        
+        apiRequest.callAPI()
+        
+    }
     
     
 }

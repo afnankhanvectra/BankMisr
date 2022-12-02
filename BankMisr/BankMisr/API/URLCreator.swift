@@ -13,4 +13,10 @@ struct URLCreator {
         
         return  URL(string:APIRoutes.getConfig.baseURL )!
     }
+    
+    static internal func getTodo(todoNumber : String) -> URL {
+        return  URL(string:APIRoutes.getConfig.baseURL  + "todos/" + todoNumber)!
+    }
+    
+    
 }

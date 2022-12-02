@@ -20,19 +20,17 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
         self.errorHandler = errorHandler;
     }
     
-    
     init(url:URL, successHandler: @escaping (T) -> Void, errorHandler: @escaping (HttpStatusCode, BMError?) -> Void) {
         self.url = url
         self.successHandler = successHandler;
         self.errorHandler = errorHandler;
     }
     
-    
     @discardableResult func callAPI(withData data:[String: Any] = [:], methodType _methodType : String = FGET, timoutDuration _timeOutDuration : Double = timeout.medium.rawValue   ) -> URLSessionDataTask? {
         
         let info = ProcessInfo.processInfo
         let begin = info.systemUptime
-
+        
         let parameters = data
         print(url)
         
@@ -57,18 +55,10 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         // Add Token of user here
-        request.addValue(apiKey, forHTTPHeaderField: FTOKEN_HEADER)
+        //        request.addValue(apiKey, forHTTPHeaderField: FTOKEN_HEADER)
+        print("API call \(apiKey)")
         
         let task = session.dataTask(with: request as URLRequest) { (data, urlResponse, error) in
-            
-            
-            //Code For Debbuging
-            if let httpStatus = urlResponse as? HTTPURLResponse {
-                //print(httpStatus.statusCode)
-                if httpStatus.statusCode != HttpStatusCode.OK.rawValue {
-                    // let dict = httpStatus.allHeaderFields
-                }
-            }
             
             guard error == nil else {
                 // if timeout error then send timeout for token refresh
@@ -93,7 +83,6 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
                     self.successHandler(dataObject)
                     return
                 }
-                
             } catch let error {
                 let bmError = try? self.decodeObject(BMError.self, from: data)
                 print("Error is \(error.localizedDescription)")
@@ -105,27 +94,26 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
     }
     
     func decodeObject<T: Decodable>(_ model: T.Type,
-                                            from data: Data) throws -> T? {
+                                    from data: Data) throws -> T? {
         let decoder = JSONDecoder()
         let objects = try decoder.decode(model.self, from: data)
-        
         return objects
     }
     
     
     private var apiKey: String {
-      get {
-        // 1
-        guard let filePath = Bundle.main.path(forResource: "Keys-Info", ofType: "plist") else {
-          fatalError("Couldn't find file 'Keys-Info.plist'.")
+        get {
+            // 1
+            guard let filePath = Bundle.main.path(forResource: "Keys-Info", ofType: "plist") else {
+                fatalError("Couldn't find file 'Keys-Info.plist'.")
+            }
+            // 2
+            let plist = NSDictionary(contentsOfFile: filePath)
+            guard let value = plist?.object(forKey: "FixerAPI") as? String else {
+                fatalError("Couldn't find key 'FixerAPI' in 'Keys-Info.plist'.")
+            }
+            return value
         }
-        // 2
-        let plist = NSDictionary(contentsOfFile: filePath)
-        guard let value = plist?.object(forKey: "FixerAPI") as? String else {
-          fatalError("Couldn't find key 'FixerAPI' in 'Keys-Info.plist'.")
-        }
-        return value
-      }
     }
     
 }
