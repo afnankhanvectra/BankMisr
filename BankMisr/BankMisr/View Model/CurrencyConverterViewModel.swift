@@ -37,7 +37,14 @@ class CurrencyConverterViewModel : BMBaseViewModel {
     
     func getCurrencyId(fromName name : String) -> Int {
         return  currencyModelArray.filter({$0.name == name}).first!.currencyId
-        
     }
     
+    func callAPI() {
+        repository.callTodoAPI { todo in
+            print(todo)
+        } failHandler: { error in
+            print(error)
+        }
+
+    }
 }
