@@ -15,5 +15,8 @@ class BMBaseViewModel {
         self.repository = repository
     }
     
+    func setupViewModelCallbacks() { }
+
+    
 
 }

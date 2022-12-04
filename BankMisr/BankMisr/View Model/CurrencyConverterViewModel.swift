@@ -10,41 +10,58 @@ import Foundation
 class CurrencyConverterViewModel : BMBaseViewModel {
     
     private var currencyModelArray = [CurrencyModel]()
+    var onFinishGetLatestCurrency: VoidCallBack?
+
     
     override init(repository: RepositoryProtocol) {
         super.init(repository: repository)
-        initilzeCurrencyModel()
+//        initilzeCurrencyModel()
     }
     
     private func initilzeCurrencyModel(){
         
-        currencyModelArray.append(CurrencyModel(currencyId: 1, name: "Pakistani Rupees" , value: 0.1))
-        currencyModelArray.append(CurrencyModel(currencyId: 2, name: "egyptian pound" , value: 0.2))
-        currencyModelArray.append(CurrencyModel(currencyId: 3, name: "USA Dollar" , value: 4.0))
+        for (currencySymbol, name) in currencyNameAndSymbols {
+            currencyModelArray.append(CurrencyModel(currencySymbol: currencySymbol, name: name , value: 1))
+        }
     }
+    
+    private func saveLatestCodabeValue(_ latestCodeable :  LatestCodable){
+        for (currencySymbol, value) in latestCodeable.rates {
+            currencyModelArray.append(CurrencyModel(currencySymbol: currencySymbol, name: currencyNameAndSymbols[currencySymbol] ?? "", value: value))
+        }
+        onFinishGetLatestCurrency?()
+    }
+    
     
     func getCurrencyListName() -> [String] {
         return currencyModelArray.map({$0.name})
     }
     
-    func convertToCurrency(fromCurrency : Int , toCurrency : Int , value : Double ) -> Double {
+    
+    func convertToCurrency(fromCurrency : String , toCurrency : String , value : Double ) -> Double {
         
-        guard let fromCurrencyModel = currencyModelArray.filter({$0.currencyId == fromCurrency}).first else { return 0.0}
-        guard let toCurrencyModel = currencyModelArray.filter({$0.currencyId == toCurrency}).first else { return 0.0}
+        guard let fromCurrencyModel = currencyModelArray.filter({$0.currencySymbol == fromCurrency}).first else { return 0.0}
+        guard let toCurrencyModel = currencyModelArray.filter({$0.currencySymbol == toCurrency}).first else { return 0.0}
         let answer = (toCurrencyModel.value *  value ) / Double(fromCurrencyModel.value )
         return answer
     }
     
-    func getCurrencyId(fromName name : String) -> Int {
-        return  currencyModelArray.filter({$0.name == name}).first!.currencyId
+    func getCurrencyId(fromName name : String) -> String {
+        return  currencyModelArray.filter({$0.name == name}).first!.currencySymbol
     }
     
-    func callAPI() {
-        repository.callTodoAPI { todo in
-            print(todo)
-        } failHandler: { error in
-            print(error)
-        }
+    func callLatestRateAPI() {
+                repository.callFixerLatestAPI {[weak self] latestCodable in
+                    guard let self = self else { return }
 
+                    print(latestCodable)
+                    if latestCodable.success == true {
+                        
+                        self.saveLatestCodabeValue(latestCodable)
+                    }
+                } failHandler: { error in
+                    print(error)
+                }
+        
     }
 }

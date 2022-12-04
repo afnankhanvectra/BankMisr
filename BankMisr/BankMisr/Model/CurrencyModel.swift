@@ -9,7 +9,7 @@ import Foundation
 
 
 struct CurrencyModel {
-    var currencyId = 1
+    var currencySymbol = ""
     var name = ""
     var value = 0.0
 }

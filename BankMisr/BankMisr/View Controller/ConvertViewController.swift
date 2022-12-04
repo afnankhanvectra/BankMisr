@@ -25,26 +25,25 @@ class CurrencyConverterViewController: UIViewController {
     let disposeBag = DisposeBag()
     let fromDropDown = DropDown()
     let toDropDown = DropDown()
-
-    var fromCurrencyId = 1
-    var toCurrencyId = 2
+    
+    var fromCurrency = "USD"
+    var toCurrency = "USD"
     
     
     //MARK: - View controller life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+        
         // Do any additional setup after loading the view.
-        self.currencyConverterViewModel =  CurrencyConverterViewModel(repository: Repository.shared)
-        self.currencyConverterViewModel.callAPI()
+        setupViewModelCallbacks()
         
         setCurrencyDropDown()
         
         fromTextField.rx.controlEvent([.editingChanged])
             .asObservable().subscribe({ [unowned self] _ in
                 if !(self.fromTextField.text.isNilOrEmpty()) {
-                    let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: fromCurrencyId, toCurrency: toCurrencyId , value : Double(self.fromTextField.text!)!)
+                    let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: fromCurrency, toCurrency: toCurrency , value : Double(self.fromTextField.text!)!)
                     self.toTextField.text = "\(answer.round(to: 2))"
                 }
             }).disposed(by: disposeBag)
@@ -52,11 +51,26 @@ class CurrencyConverterViewController: UIViewController {
         toTextField.rx.controlEvent([.editingChanged])
             .asObservable().subscribe({ [unowned self] _ in
                 if !(self.toTextField.text.isNilOrEmpty()) {
-                    let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: toCurrencyId, toCurrency: fromCurrencyId , value : Double(self.toTextField.text!)!)
+                    let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: toCurrency, toCurrency: fromCurrency , value : Double(self.toTextField.text!)!)
                     self.fromTextField.text = "\(answer.round(to: 2))"
                 }
             }).disposed(by: disposeBag)
         
+    }
+    
+    func setupViewModelCallbacks() {
+        
+        self.currencyConverterViewModel =  CurrencyConverterViewModel(repository: Repository.shared)
+        self.currencyConverterViewModel.callLatestRateAPI()
+        
+        currencyConverterViewModel.onFinishGetLatestCurrency = { [weak self]  in
+            guard let self = self else { return }
+            print("In Cal back ")
+            self.fromDropDown.dataSource = self.currencyConverterViewModel.getCurrencyListName()
+            self.fromCurrency = "USD"
+            self.toCurrency = "USD"
+            
+        }
     }
     
     private func setCurrencyDropDown() {
@@ -65,7 +79,7 @@ class CurrencyConverterViewController: UIViewController {
         fromDropDown.dataSource = currencyConverterViewModel.getCurrencyListName()
         fromDropDown.selectionAction = { [weak self] (index: Int, item: String) in
             guard let self = self else { return }
-            self.fromCurrencyId = self.currencyConverterViewModel.getCurrencyId(fromName: item)
+            self.fromCurrency = self.currencyConverterViewModel.getCurrencyId(fromName: item)
         }
         
         fromCurrencyView.rx.tapGesture()
@@ -77,9 +91,5 @@ class CurrencyConverterViewController: UIViewController {
             .disposed(by: disposeBag)
         
     }
-    
-    //MARK: - Test
-    
-    
     
 }

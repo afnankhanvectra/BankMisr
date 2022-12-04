@@ -14,6 +14,8 @@ protocol RepositoryProtocol {
     func callTodoAPI(successHandler: @escaping ((TodoCodable) -> Void),
                      failHandler: @escaping ((BMError?) -> Void))
     
+    func callFixerLatestAPI(successHandler: @escaping ((LatestCodable) -> Void),
+                     failHandler: @escaping ((BMError?) -> Void))
 }
 
 class Repository: RepositoryProtocol {
@@ -33,4 +35,17 @@ class Repository: RepositoryProtocol {
         }
         apiRequest.callAPI()
     }
+    
+    func callFixerLatestAPI(successHandler: @escaping ((LatestCodable) -> Void),
+                     failHandler: @escaping ((BMError?) -> Void)) {
+        
+        let apiRequest = ApiCall<LatestCodable>(url: URLCreator.getLatestRates(), successHandler: {  (latestCodable: LatestCodable) -> Void  in
+            successHandler(latestCodable)
+            
+        }) { (httpStatusCode: HttpStatusCode, errorMessage: BMError?) in
+            failHandler(errorMessage)
+        }
+        apiRequest.callAPI()
+    }
+    
 }

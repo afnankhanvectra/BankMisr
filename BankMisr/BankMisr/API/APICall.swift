@@ -39,7 +39,11 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
         sessionConfig.timeoutIntervalForResource = _timeOutDuration * 2
         let session = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
         
-        var request = URLRequest(url: url)
+   
+//        let url2 = "https://api.apilayer.com/fixer/latest?symbols=EUR,PKR,AFN&base=USD"
+//        var request = URLRequest(url: URL(string: url2)!,timeoutInterval: Double.infinity)
+
+        var request = URLRequest(url: url,timeoutInterval: Double.infinity)
         
         request.httpMethod = _methodType
         
@@ -55,8 +59,7 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         // Add Token of user here
-        //        request.addValue(apiKey, forHTTPHeaderField: FTOKEN_HEADER)
-        print("API call \(apiKey)")
+         request.addValue(apiKey, forHTTPHeaderField: FTOKEN_HEADER)
         
         let task = session.dataTask(with: request as URLRequest) { (data, urlResponse, error) in
             
@@ -69,11 +72,12 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
                 }
                 return
             }
-            
+
             guard let data = data else {
                 return
             }
-            
+   
+
             do {
                 let decoder = JSONDecoder();
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
