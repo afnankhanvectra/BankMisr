@@ -7,17 +7,14 @@
 
 import Foundation
 
-
-enum timeout: Double {
-    case  short  =  5.0,
-    medium  =  10.0,
-    longer  =  15.0
-}
-
 public let FGET =                               "GET"
 public let FPOST =                              "POST"
 public let  FTOKEN_HEADER      =                 "apikey"
+public let  FBASE_CURRENCY      =               "USD"
+
+
 typealias VoidCallBack = (() -> Void)
+typealias StringCallBack = ((String) -> Void)
 
 
 let currencyNameAndSymbols = [
@@ -62,5 +59,4 @@ let currencyNameAndSymbols = [
 
 ]
 
-public let  FBASE_CURRENCY      =     "USD"
 

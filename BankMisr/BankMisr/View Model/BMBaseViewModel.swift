@@ -10,12 +10,13 @@ import Foundation
 class BMBaseViewModel {
     
     let repository: RepositoryProtocol
+    var onFinishWithError: StringCallBack?
+    var onStartLoading: VoidCallBack?
 
     init(repository: RepositoryProtocol) {
         self.repository = repository
     }
     
-    func setupViewModelCallbacks() { }
 
     
 

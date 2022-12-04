@@ -17,7 +17,6 @@ struct URLCreator {
     static internal func getTodo(todoNumber : String) -> URL {
         return  URL(string:APIRoutes.getConfig.baseURL  + "todos/" + todoNumber)!
     }
-    //        let url2 = "https://api.apilayer.com/fixer/latest?symbols=EUR,PKR,AFN&base=USD"
 
     static internal func getLatestRates() -> URL {
         return  URL(string:APIRoutes.getConfig.baseURL  + "latest?symbols=\(getCurrenciesSymbol())&base=\(FBASE_CURRENCY)")!

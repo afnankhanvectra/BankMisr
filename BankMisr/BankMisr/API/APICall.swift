@@ -26,7 +26,7 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
         self.errorHandler = errorHandler;
     }
     
-    @discardableResult func callAPI(withData data:[String: Any] = [:], methodType _methodType : String = FGET, timoutDuration _timeOutDuration : Double = timeout.medium.rawValue   ) -> URLSessionDataTask? {
+    @discardableResult func callAPI(withData data:[String: Any] = [:], methodType _methodType : String = FGET  ) -> URLSessionDataTask? {
         
         let info = ProcessInfo.processInfo
         let begin = info.systemUptime
@@ -35,8 +35,8 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
         print(url)
         
         let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = _timeOutDuration
-        sessionConfig.timeoutIntervalForResource = _timeOutDuration * 2
+        sessionConfig.timeoutIntervalForRequest = Double.infinity
+        sessionConfig.timeoutIntervalForResource = Double.infinity
         let session = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
         
    
@@ -77,7 +77,6 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
                 return
             }
    
-
             do {
                 let decoder = JSONDecoder();
                 decoder.keyDecodingStrategy = .convertFromSnakeCase

@@ -11,7 +11,7 @@ import RxCocoa
 import DropDown
 import RxGesture
 
-class CurrencyConverterViewController: UIViewController {
+class CurrencyConverterViewController: BMBaseViewController {
     
     //MARK: - IBOutlet
     @IBOutlet weak var fromCurrencyView :  UIView!
@@ -31,7 +31,7 @@ class CurrencyConverterViewController: UIViewController {
     let fromDropDown = DropDown()
     let toDropDown = DropDown()
     
-    var fromCurrency = "USD" { didSet {
+    var fromCurrency = FBASE_CURRENCY { didSet {
         self.fromLabel.text = fromCurrency
         if !(self.toTextField.text.isNilOrEmpty()) {
             let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: fromCurrency, toCurrency: toCurrency , value : Double(self.fromTextField.text!)!)
@@ -40,7 +40,7 @@ class CurrencyConverterViewController: UIViewController {
     }
         
     }
-    var toCurrency = "USD" { didSet {
+    var toCurrency = FBASE_CURRENCY { didSet {
         self.toLabel.text = toCurrency
         if !(self.toTextField.text.isNilOrEmpty()) {
             let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: toCurrency, toCurrency: fromCurrency , value : Double(self.toTextField.text!)!)
@@ -83,8 +83,22 @@ class CurrencyConverterViewController: UIViewController {
     
     func setupViewModelCallbacks() {
         
-        self.currencyConverterViewModel =  CurrencyConverterViewModel(repository: Repository.shared)
-        self.currencyConverterViewModel.callLatestRateAPI()
+        currencyConverterViewModel =  CurrencyConverterViewModel(repository: Repository.shared)
+        
+        currencyConverterViewModel.onStartLoading = { [weak self]  in
+            guard let self = self else { return }
+            self.showLoadingIndicator()
+        }
+        currencyConverterViewModel.onFinishWithError = {  [weak self]  message  in
+            
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.dismissLoadingIndicator()
+                self.showAlert(message: message)
+            }
+        }
+        
+        currencyConverterViewModel.callLatestRateAPI()
         
         currencyConverterViewModel.onFinishGetLatestCurrency = { [weak self]  in
             guard let self = self else { return }
