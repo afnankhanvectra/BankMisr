@@ -19,7 +19,7 @@
 		9C16970C2939F8CC00D858AF /* TodoListCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C16970B2939F8CC00D858AF /* TodoListCodable.swift */; };
 		9C16970E293A034C00D858AF /* BMBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C16970D293A034C00D858AF /* BMBaseViewModel.swift */; };
 		9C169710293A03D700D858AF /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C16970F293A03D700D858AF /* Repository.swift */; };
-		9C677627293C877900EE2979 /* SymbolsCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C677626293C877800EE2979 /* SymbolsCodable.swift */; };
+		9C67762B293CD11600EE2979 /* LatestCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C67762A293CD11600EE2979 /* LatestCodable.swift */; };
 		9C982F7929379474003D2FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7829379474003D2FB6 /* AppDelegate.swift */; };
 		9C982F7B29379474003D2FB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7A29379474003D2FB6 /* SceneDelegate.swift */; };
 		9C982F7D29379474003D2FB6 /* ConvertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7C29379474003D2FB6 /* ConvertViewController.swift */; };
@@ -45,7 +45,7 @@
 		9C16970B2939F8CC00D858AF /* TodoListCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCodable.swift; sourceTree = "<group>"; };
 		9C16970D293A034C00D858AF /* BMBaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMBaseViewModel.swift; sourceTree = "<group>"; };
 		9C16970F293A03D700D858AF /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		9C677626293C877800EE2979 /* SymbolsCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsCodable.swift; sourceTree = "<group>"; };
+		9C67762A293CD11600EE2979 /* LatestCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestCodable.swift; sourceTree = "<group>"; };
 		9C982F7529379474003D2FB6 /* BankMisr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankMisr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C982F7829379474003D2FB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C982F7A29379474003D2FB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 				9C982F7829379474003D2FB6 /* AppDelegate.swift */,
 				9C1697032939456000D858AF /* Keys-Info.plist */,
 				9C982F7A29379474003D2FB6 /* SceneDelegate.swift */,
-				9C677626293C877800EE2979 /* SymbolsCodable.swift */,
+				9C67762A293CD11600EE2979 /* LatestCodable.swift */,
 				9C677625293C876100EE2979 /* Todo Codabl */,
 				9C1696FC29393DFA00D858AF /* API */,
 				9CD86FE2293803D7002246CC /* Extension */,
@@ -304,11 +304,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C982F8F2937ACB8003D2FB6 /* CurrencyModel.swift in Sources */,
+				9C67762B293CD11600EE2979 /* LatestCodable.swift in Sources */,
 				9C169708293947AE00D858AF /* APIRoutes.swift in Sources */,
 				9C982F8D2937A7E2003D2FB6 /* CurrencyConverterViewModel.swift in Sources */,
 				9CD86FE1293803B0002246CC /* Double+Extension.swift in Sources */,
 				9C982F7D29379474003D2FB6 /* ConvertViewController.swift in Sources */,
-				9C677627293C877900EE2979 /* SymbolsCodable.swift in Sources */,
 				9C982F7929379474003D2FB6 /* AppDelegate.swift in Sources */,
 				9C16970E293A034C00D858AF /* BMBaseViewModel.swift in Sources */,
 				9CD86FDF29380399002246CC /* String+Extension.swift in Sources */,
