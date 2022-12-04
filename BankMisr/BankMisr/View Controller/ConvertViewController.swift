@@ -33,7 +33,7 @@ class CurrencyConverterViewController: BMBaseViewController {
     
     var fromCurrency = FBASE_CURRENCY { didSet {
         self.fromLabel.text = fromCurrency
-        if !(self.toTextField.text.isNilOrEmpty()) {
+        if !(self.toTextField.text.isNilOrEmpty()) && Double(self.fromTextField.text!) != nil {
             let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: fromCurrency, toCurrency: toCurrency , value : Double(self.fromTextField.text!)!)
             self.toTextField.text = "\(answer.round(to: 2))"
         }
@@ -42,7 +42,7 @@ class CurrencyConverterViewController: BMBaseViewController {
     }
     var toCurrency = FBASE_CURRENCY { didSet {
         self.toLabel.text = toCurrency
-        if !(self.toTextField.text.isNilOrEmpty()) {
+        if !(self.toTextField.text.isNilOrEmpty()) && Double(self.toTextField.text!) != nil {
             let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: toCurrency, toCurrency: fromCurrency , value : Double(self.toTextField.text!)!)
             self.fromTextField.text = "\(answer.round(to: 2))"
         }
@@ -66,7 +66,7 @@ class CurrencyConverterViewController: BMBaseViewController {
         
         fromTextField.rx.controlEvent([.editingChanged])
             .asObservable().subscribe({ [unowned self] _ in
-                if !(self.fromTextField.text.isNilOrEmpty()) {
+                if !(self.fromTextField.text.isNilOrEmpty()) && Double(self.fromTextField.text!) != nil {
                     let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: fromCurrency, toCurrency: toCurrency , value : Double(self.fromTextField.text!)!)
                     self.toTextField.text = "\(answer.round(to: 2))"
                 }
@@ -74,7 +74,7 @@ class CurrencyConverterViewController: BMBaseViewController {
         
         toTextField.rx.controlEvent([.editingChanged])
             .asObservable().subscribe({ [unowned self] _ in
-                if !(self.toTextField.text.isNilOrEmpty()) {
+                if !(self.toTextField.text.isNilOrEmpty()) && Double(self.toTextField.text!) != nil {
                     let answer = self.currencyConverterViewModel.convertToCurrency(fromCurrency: toCurrency, toCurrency: fromCurrency , value : Double(self.toTextField.text!)!)
                     self.fromTextField.text = "\(answer.round(to: 2))"
                 }

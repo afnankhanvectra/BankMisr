@@ -12,8 +12,8 @@ enum APIRoutes: String {
     case getConfig = "config"
 
     var baseURL: String {
-      //  return "https://jsonplaceholder.typicode.com/"
-        return "https://api.apilayer.com/fixer/"
+        return "https://jsonplaceholder.typicode.com/"
+      //  return "https://api.apilayer.com/fixer/"
     }
     
     var route: String {
