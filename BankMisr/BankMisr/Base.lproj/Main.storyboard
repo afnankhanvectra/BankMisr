@@ -49,6 +49,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow" title=""/>
+                                <connections>
+                                    <action selector="swapButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KNk-j5-QO2"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BpZ-CB-Pbg">
                                 <rect key="frame" x="61" y="275" width="97" height="34"/>

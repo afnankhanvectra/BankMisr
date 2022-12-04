@@ -18,13 +18,6 @@ class CurrencyConverterViewModel : BMBaseViewModel {
         //        initilzeCurrencyModel()
     }
     
-    private func initilzeCurrencyModel(){
-        
-        for (currencySymbol, name) in currencyNameAndSymbols {
-            currencyModelArray.append(CurrencyModel(currencySymbol: currencySymbol, name: name , value: 1))
-        }
-    }
-    
     private func saveLatestCodabeValue(_ latestCodeable :  LatestCodable){
         for (currencySymbol, value) in latestCodeable.rates {
             currencyModelArray.append(CurrencyModel(currencySymbol: currencySymbol, name: currencyNameAndSymbols[currencySymbol] ?? "", value: value))
@@ -53,10 +46,9 @@ class CurrencyConverterViewModel : BMBaseViewModel {
     func callLatestRateAPI() {
         repository.callFixerLatestAPI {[weak self] latestCodable in
             guard let self = self else { return }
-
+            
             print(latestCodable)
             if latestCodable.success == true {
-                
                 self.saveLatestCodabeValue(latestCodable)
             }
         } failHandler: { error in
