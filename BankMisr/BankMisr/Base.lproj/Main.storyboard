@@ -20,8 +20,8 @@
                                 <rect key="frame" x="37" y="191" width="109" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikc-CY-hO7">
-                                        <rect key="frame" x="33" y="16" width="40" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikc-CY-hO7">
+                                        <rect key="frame" x="33" y="16" width="35" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -30,15 +30,20 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSa-ao-C63">
-                                <rect key="frame" x="295" y="197" width="75" height="43"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-ky-L5B" userLabel="To Currency View">
+                                <rect key="frame" x="273" y="191" width="109" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="To"/>
-                                <connections>
-                                    <action selector="toButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h0M-6h-aDr"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5SX-SQ-AoR" userLabel="To">
+                                        <rect key="frame" x="33" y="16" width="35" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3Z-Uu-mPR" userLabel="swap button">
                                 <rect key="frame" x="187" y="190" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,9 +68,11 @@
                     </view>
                     <connections>
                         <outlet property="fromCurrencyView" destination="g0E-uq-CXt" id="tvC-B4-PkQ"/>
+                        <outlet property="fromLabel" destination="ikc-CY-hO7" id="7jV-OR-PhA"/>
                         <outlet property="fromTextField" destination="BpZ-CB-Pbg" id="2Id-Q5-k7n"/>
                         <outlet property="swapButton" destination="t3Z-Uu-mPR" id="kpr-qe-kpb"/>
-                        <outlet property="toButton" destination="MSa-ao-C63" id="4Hg-jZ-6T7"/>
+                        <outlet property="toCurrencyView" destination="ZBF-ky-L5B" id="oxs-cW-i4A"/>
+                        <outlet property="toLabel" destination="5SX-SQ-AoR" id="rNv-gn-SHu"/>
                         <outlet property="toTextField" destination="Qiy-ei-aJi" id="TD0-nG-KbO"/>
                     </connections>
                 </viewController>

@@ -11,11 +11,11 @@ class CurrencyConverterViewModel : BMBaseViewModel {
     
     private var currencyModelArray = [CurrencyModel]()
     var onFinishGetLatestCurrency: VoidCallBack?
-
+    
     
     override init(repository: RepositoryProtocol) {
         super.init(repository: repository)
-//        initilzeCurrencyModel()
+        //        initilzeCurrencyModel()
     }
     
     private func initilzeCurrencyModel(){
@@ -51,17 +51,17 @@ class CurrencyConverterViewModel : BMBaseViewModel {
     }
     
     func callLatestRateAPI() {
-                repository.callFixerLatestAPI {[weak self] latestCodable in
-                    guard let self = self else { return }
+        repository.callFixerLatestAPI {[weak self] latestCodable in
+            guard let self = self else { return }
 
-                    print(latestCodable)
-                    if latestCodable.success == true {
-                        
-                        self.saveLatestCodabeValue(latestCodable)
-                    }
-                } failHandler: { error in
-                    print(error)
-                }
+            print(latestCodable)
+            if latestCodable.success == true {
+                
+                self.saveLatestCodabeValue(latestCodable)
+            }
+        } failHandler: { error in
+            print(error)
+        }
         
     }
 }

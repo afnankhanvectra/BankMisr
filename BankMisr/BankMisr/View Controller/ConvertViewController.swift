@@ -14,11 +14,16 @@ import RxGesture
 class CurrencyConverterViewController: UIViewController {
     
     //MARK: - IBOutlet
-    @IBOutlet weak var fromCurrencyView : UIView!
-    @IBOutlet weak var toButton :       UIButton!
-    @IBOutlet weak var swapButton :     UIButton!
-    @IBOutlet weak var fromTextField :  UITextField!
-    @IBOutlet weak var toTextField :    UITextField!
+    @IBOutlet weak var fromCurrencyView :  UIView!
+    @IBOutlet weak var fromTextField :     UITextField!
+    @IBOutlet weak var fromLabel :         UILabel!
+    
+    @IBOutlet weak var swapButton :        UIButton!
+    
+    @IBOutlet weak var toCurrencyView :    UIView!
+    @IBOutlet weak var toTextField :       UITextField!
+    @IBOutlet weak var toLabel :           UILabel!
+    
     
     private var currencyConverterViewModel: CurrencyConverterViewModel!
     
@@ -26,8 +31,8 @@ class CurrencyConverterViewController: UIViewController {
     let fromDropDown = DropDown()
     let toDropDown = DropDown()
     
-    var fromCurrency = "USD"
-    var toCurrency = "USD"
+    var fromCurrency = "USD" { didSet { self.fromLabel.text = fromCurrency} }
+    var toCurrency = "USD" { didSet { self.toLabel.text = toCurrency} }
     
     
     //MARK: - View controller life cycle
@@ -67,9 +72,7 @@ class CurrencyConverterViewController: UIViewController {
             guard let self = self else { return }
             print("In Cal back ")
             self.fromDropDown.dataSource = self.currencyConverterViewModel.getCurrencyListName()
-            self.fromCurrency = "USD"
-            self.toCurrency = "USD"
-            
+            self.toDropDown.dataSource = self.currencyConverterViewModel.getCurrencyListName()
         }
     }
     
@@ -87,6 +90,21 @@ class CurrencyConverterViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.fromDropDown.show()
+            })
+            .disposed(by: disposeBag)
+        
+        toDropDown.anchorView = toCurrencyView // UIView or UIBarButtonItem
+        toDropDown.dataSource = currencyConverterViewModel.getCurrencyListName()
+        toDropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            guard let self = self else { return }
+            self.toCurrency = self.currencyConverterViewModel.getCurrencyId(fromName: item)
+        }
+        
+        toCurrencyView.rx.tapGesture()
+            .when(.recognized) // This is important!
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.toDropDown.show()
             })
             .disposed(by: disposeBag)
         
