@@ -14,10 +14,6 @@ struct URLCreator {
         return  URL(string:APIRoutes.getConfig.baseURL )!
     }
     
-    static internal func getTodo(todoNumber : String) -> URL {
-        return  URL(string:APIRoutes.getConfig.baseURL  + "todos/" + todoNumber)!
-    }
-
     static internal func getLatestRates() -> URL {
         return  URL(string:APIRoutes.getConfig.baseURL  + "latest?symbols=\(getCurrenciesSymbol())&base=\(FBASE_CURRENCY)")!
     }

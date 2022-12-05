@@ -156,22 +156,63 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AUD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I1-NS-TiV">
-                                                    <rect key="frame" x="12" y="11" width="28" height="16"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I1-NS-TiV">
+                                                    <rect key="frame" x="12" y="22" width="178" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12.123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMx-ha-tIn">
-                                                    <rect key="frame" x="140" y="11" width="49" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZ0-S4-U21">
+                                                    <rect key="frame" x="207" y="22" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMx-ha-tIn">
+                                                    <rect key="frame" x="378" y="22" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tZ0-S4-U21" firstAttribute="centerY" secondItem="f2J-C1-zWc" secondAttribute="centerY" id="QQs-mi-hIs"/>
+                                                <constraint firstAttribute="trailing" secondItem="qMx-ha-tIn" secondAttribute="trailing" constant="36" id="asR-7Z-usx"/>
+                                                <constraint firstItem="1I1-NS-TiV" firstAttribute="centerY" secondItem="f2J-C1-zWc" secondAttribute="centerY" id="azf-OD-Qq4"/>
+                                                <constraint firstItem="tZ0-S4-U21" firstAttribute="centerX" secondItem="f2J-C1-zWc" secondAttribute="centerX" id="b1B-4l-5hM"/>
+                                                <constraint firstItem="1I1-NS-TiV" firstAttribute="width" secondItem="f2J-C1-zWc" secondAttribute="width" multiplier="0.43" id="h7b-b3-QOJ"/>
+                                                <constraint firstItem="1I1-NS-TiV" firstAttribute="leading" secondItem="f2J-C1-zWc" secondAttribute="leading" constant="12" id="yam-xJ-3b7"/>
+                                                <constraint firstItem="qMx-ha-tIn" firstAttribute="centerY" secondItem="f2J-C1-zWc" secondAttribute="centerY" id="yvi-a0-lfL"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="currencyName" destination="1I1-NS-TiV" id="pma-6U-Qst"/>
+                                            <outlet property="currencySymbol" destination="tZ0-S4-U21" id="LKF-TX-rDq"/>
+                                            <outlet property="currencyValue" destination="qMx-ha-tIn" id="rAw-aZ-fWv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoricalRecordHeaderCell" id="9Ib-G5-faR" customClass="HistoricalRecordHeaderCell" customModule="BankMisr" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Ib-G5-faR" id="hXw-PZ-qfp">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P19-8M-UaF">
+                                                    <rect key="frame" x="12" y="22" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="P19-8M-UaF" firstAttribute="leading" secondItem="hXw-PZ-qfp" secondAttribute="leading" constant="12" id="Nab-2X-nao"/>
+                                                <constraint firstItem="P19-8M-UaF" firstAttribute="centerY" secondItem="hXw-PZ-qfp" secondAttribute="centerY" id="hf6-Ow-IJk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="P19-8M-UaF" id="Jnc-nW-rxK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

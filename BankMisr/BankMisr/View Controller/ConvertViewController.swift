@@ -106,7 +106,7 @@ class CurrencyConverterViewController: BMBaseViewController {
             self.toDropDown.dataSource = self.currencyConverterViewModel.getCurrencyListName()
         }
         
-        //       currencyConverterViewModel.callLatestRateAPI()
+        currencyConverterViewModel.callLatestRateAPI()
         
     }
     
@@ -114,7 +114,7 @@ class CurrencyConverterViewController: BMBaseViewController {
     
     private func setCurrencyDropDown() {
         
-        fromDropDown.anchorView = fromCurrencyView // UIView or UIBarButtonItem
+        fromDropDown.anchorView = fromCurrencyView
         fromDropDown.dataSource = currencyConverterViewModel.getCurrencyListName()
         fromDropDown.selectionAction = { [weak self] (index: Int, item: String) in
             guard let self = self else { return }
@@ -122,14 +122,14 @@ class CurrencyConverterViewController: BMBaseViewController {
         }
         
         fromCurrencyView.rx.tapGesture()
-            .when(.recognized) // This is important!
+            .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.fromDropDown.show()
             })
             .disposed(by: disposeBag)
         
-        toDropDown.anchorView = toCurrencyView // UIView or UIBarButtonItem
+        toDropDown.anchorView = toCurrencyView
         toDropDown.dataSource = currencyConverterViewModel.getCurrencyListName()
         toDropDown.selectionAction = { [weak self] (index: Int, item: String) in
             guard let self = self else { return }
@@ -137,7 +137,7 @@ class CurrencyConverterViewController: BMBaseViewController {
         }
         
         toCurrencyView.rx.tapGesture()
-            .when(.recognized) // This is important!
+            .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.toDropDown.show()

@@ -29,15 +29,18 @@ class CurrencyConverterViewModel : BMBaseViewModel {
     }
     
     private func saveHistoryRatesRecord(_ historicalRecordCodable :  HistoricalRecordCodable){
+        historicalRecordModelArray.removeAll()
         for (date, record) in historicalRecordCodable.rates {
             var structRecord = HistoricalRecordModel()
             structRecord.date = date
             for (currencySymbol, value) in record {
                 structRecord.currencyValues.append((currencySymbol,value))
             }
+            // For sorting record
+            structRecord.currencyValues = structRecord.currencyValues.sorted(by: {$0.0 < $1.0})
             historicalRecordModelArray.append(structRecord)
         }
-        print("Record is loaded \(historicalRecordModelArray)")
+        historicalRecordModelArray = historicalRecordModelArray.sorted(by: {$0.date > $1.date})
         onFinishGetHistoricalRecord?()
     }
     
@@ -58,14 +61,21 @@ class CurrencyConverterViewModel : BMBaseViewModel {
         return  currencyModelArray.filter({$0.name == name}).first!.currencySymbol
     }
     
+    func getCurrencyName(fromSymbol symbol : String) -> String {
+        return  currencyModelArray.filter({$0.currencySymbol == symbol}).first!.name
+    }
+    
     func getNumberOfDaysRecord() -> Int {
         return  historicalRecordModelArray.count
+    }
+    
+    func getHistoricalRecord(ofIndex index : Int) -> HistoricalRecordModel? {
+        return historicalRecordModelArray.count > index ?  historicalRecordModelArray[index] :  nil
     }
     
     //MARK: - API calls
     
     func callLatestRateAPI() {
-        
         onStartLoading?()
         repository.callFixerLatestAPI {[weak self] latestCodable in
             guard let self = self else { return }

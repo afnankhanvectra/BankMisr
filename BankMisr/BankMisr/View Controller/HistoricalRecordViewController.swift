@@ -30,8 +30,6 @@ class HistoricalRecordViewController: BMBaseViewController  {
     }
     override func setupViewModelCallbacks() {
         
-        print("\(targetdCurrencies)")
-        targetdCurrencies = "PKR,AUD"
         currencyConverterViewModel.onStartLoading = { [weak self]  in
             guard let self = self else { return }
             self.showLoadingIndicator()
@@ -53,7 +51,7 @@ class HistoricalRecordViewController: BMBaseViewController  {
             }
         }
         
-//        currencyConverterViewModel.callTimeSeriesRateAPI(with: targetdCurrencies)
+        currencyConverterViewModel.callTimeSeriesRateAPI(with: targetdCurrencies)
         
     }
 }
@@ -76,7 +74,12 @@ extension HistoricalRecordViewController: UITableViewDataSource, UITableViewDele
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: "HistoricalRecordHeaderCell") as! HistoricalRecordHeaderCell
+        headerCell.setContents(currencyConverterViewModel, recordIndex: section)
+        return headerCell
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
