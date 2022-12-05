@@ -35,8 +35,8 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
         print(url)
         
         let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = Double.infinity
-        sessionConfig.timeoutIntervalForResource = Double.infinity
+        sessionConfig.timeoutIntervalForRequest = 30
+        sessionConfig.timeoutIntervalForResource = 60
         let session = URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
         
    
@@ -77,6 +77,8 @@ public class ApiCall<T> : NSObject , URLSessionDelegate  where T: Codable {
                 return
             }
    
+            print("JSON String: \(String(data: data, encoding: .utf8) ?? "")")
+
             do {
                 let decoder = JSONDecoder();
                 decoder.keyDecodingStrategy = .convertFromSnakeCase

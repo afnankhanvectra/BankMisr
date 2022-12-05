@@ -24,12 +24,13 @@ class CurrencyConverterViewController: BMBaseViewController {
     @IBOutlet weak var toTextField :       UITextField!
     @IBOutlet weak var toLabel :           UILabel!
     
-    
+    //MARK: - Variables
+
     private var currencyConverterViewModel: CurrencyConverterViewModel!
     
-    let disposeBag = DisposeBag()
-    let fromDropDown = DropDown()
-    let toDropDown = DropDown()
+    let disposeBag =    DisposeBag()
+    let fromDropDown =  DropDown()
+    let toDropDown =    DropDown()
     
     var fromCurrency = FBASE_CURRENCY { didSet {
         self.fromLabel.text = fromCurrency
@@ -54,14 +55,16 @@ class CurrencyConverterViewController: BMBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Currency list"
+
         // Do any additional setup after loading the view.
-        setupViewModelCallbacks()
         
         setTextFeildSubscriber()
         setCurrencyDropDown()
-        
     }
     
+    //MARK: - Layout set up
+
     private func setTextFeildSubscriber () {
         
         fromTextField.rx.controlEvent([.editingChanged])
@@ -81,7 +84,7 @@ class CurrencyConverterViewController: BMBaseViewController {
             }).disposed(by: disposeBag)
     }
     
-    func setupViewModelCallbacks() {
+    override func setupViewModelCallbacks() {
         
         currencyConverterViewModel =  CurrencyConverterViewModel(repository: Repository.shared)
         
@@ -89,8 +92,8 @@ class CurrencyConverterViewController: BMBaseViewController {
             guard let self = self else { return }
             self.showLoadingIndicator()
         }
+        
         currencyConverterViewModel.onFinishWithError = {  [weak self]  message  in
-            
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.dismissLoadingIndicator()
@@ -107,6 +110,8 @@ class CurrencyConverterViewController: BMBaseViewController {
         }
     }
     
+    //MARK: - Actions
+
     private func setCurrencyDropDown() {
         
         fromDropDown.anchorView = fromCurrencyView // UIView or UIBarButtonItem

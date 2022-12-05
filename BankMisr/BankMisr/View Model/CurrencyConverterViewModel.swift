@@ -44,9 +44,7 @@ class CurrencyConverterViewModel : BMBaseViewModel {
     }
     
     func callLatestRateAPI() {
-        
         onStartLoading?()
-
         repository.callFixerLatestAPI {[weak self] latestCodable in
             guard let self = self else { return }
             
@@ -58,6 +56,18 @@ class CurrencyConverterViewModel : BMBaseViewModel {
             guard let self = self else { return }
             self.onFinishWithError?(error?.localizedDescription ?? "Something wrong")
         }
-        
     }
+    
+    func callTimeSeriesRateAPI(with symbols: String) {
+        onStartLoading?()
+        repository.callFixerTimeSeriesAPI {[weak self] historicalRecordCodable in
+            guard let self = self else { return }
+            print(historicalRecordCodable)
+        } failHandler: {[weak self] error in
+            guard let self = self else { return }
+            self.onFinishWithError?(error?.localizedDescription ?? "Something wrong")
+        }
+    }
+    
+    
 }

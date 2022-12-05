@@ -23,6 +23,11 @@
 		9C67762D293CDC2000EE2979 /* BMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C67762C293CDC2000EE2979 /* BMBaseViewController.swift */; };
 		9C67762F293CDCBF00EE2979 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C67762E293CDCBF00EE2979 /* UIView+Extension.swift */; };
 		9C677631293CDF1D00EE2979 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C677630293CDF1D00EE2979 /* UIViewController+Extension.swift */; };
+		9C677634293D3BA900EE2979 /* HistoricalRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C677633293D3BA900EE2979 /* HistoricalRecordViewController.swift */; };
+		9C677636293D3D0700EE2979 /* HistoricalRecordRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C677635293D3D0700EE2979 /* HistoricalRecordRowCell.swift */; };
+		9C677638293D3DB700EE2979 /* CellProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C677637293D3DB700EE2979 /* CellProvider.swift */; };
+		9C67763A293DE36900EE2979 /* HistoricalRecordCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C677639293DE36900EE2979 /* HistoricalRecordCodable.swift */; };
+		9C67763E293DE94B00EE2979 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C67763D293DE94B00EE2979 /* Date+Extension.swift */; };
 		9C982F7929379474003D2FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7829379474003D2FB6 /* AppDelegate.swift */; };
 		9C982F7B29379474003D2FB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7A29379474003D2FB6 /* SceneDelegate.swift */; };
 		9C982F7D29379474003D2FB6 /* ConvertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C982F7C29379474003D2FB6 /* ConvertViewController.swift */; };
@@ -52,6 +57,11 @@
 		9C67762C293CDC2000EE2979 /* BMBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMBaseViewController.swift; sourceTree = "<group>"; };
 		9C67762E293CDCBF00EE2979 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		9C677630293CDF1D00EE2979 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		9C677633293D3BA900EE2979 /* HistoricalRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRecordViewController.swift; sourceTree = "<group>"; };
+		9C677635293D3D0700EE2979 /* HistoricalRecordRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRecordRowCell.swift; sourceTree = "<group>"; };
+		9C677637293D3DB700EE2979 /* CellProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProvider.swift; sourceTree = "<group>"; };
+		9C677639293DE36900EE2979 /* HistoricalRecordCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRecordCodable.swift; sourceTree = "<group>"; };
+		9C67763D293DE94B00EE2979 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		9C982F7529379474003D2FB6 /* BankMisr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankMisr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C982F7829379474003D2FB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C982F7A29379474003D2FB6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +130,15 @@
 			path = "Todo Codabl";
 			sourceTree = "<group>";
 		};
+		9C677632293D3B6700EE2979 /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				9C67762A293CD11600EE2979 /* LatestCodable.swift */,
+				9C677639293DE36900EE2979 /* HistoricalRecordCodable.swift */,
+			);
+			path = Codable;
+			sourceTree = "<group>";
+		};
 		9C982F6C29379474003D2FB6 = {
 			isa = PBXGroup;
 			children = (
@@ -143,8 +162,9 @@
 			children = (
 				9C982F7829379474003D2FB6 /* AppDelegate.swift */,
 				9C1697032939456000D858AF /* Keys-Info.plist */,
+				9C677637293D3DB700EE2979 /* CellProvider.swift */,
 				9C982F7A29379474003D2FB6 /* SceneDelegate.swift */,
-				9C67762A293CD11600EE2979 /* LatestCodable.swift */,
+				9C677632293D3B6700EE2979 /* Codable */,
 				9C677625293C876100EE2979 /* Todo Codabl */,
 				9C1696FC29393DFA00D858AF /* API */,
 				9CD86FE2293803D7002246CC /* Extension */,
@@ -180,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				9C982F7C29379474003D2FB6 /* ConvertViewController.swift */,
+				9C677633293D3BA900EE2979 /* HistoricalRecordViewController.swift */,
+				9C677635293D3D0700EE2979 /* HistoricalRecordRowCell.swift */,
 				9C67762C293CDC2000EE2979 /* BMBaseViewController.swift */,
 			);
 			path = "View Controller";
@@ -191,6 +213,7 @@
 				9CD86FDE29380399002246CC /* String+Extension.swift */,
 				9CD86FE0293803B0002246CC /* Double+Extension.swift */,
 				9C67762E293CDCBF00EE2979 /* UIView+Extension.swift */,
+				9C67763D293DE94B00EE2979 /* Date+Extension.swift */,
 				9C677630293CDF1D00EE2979 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
@@ -315,19 +338,24 @@
 				9C982F8F2937ACB8003D2FB6 /* CurrencyModel.swift in Sources */,
 				9C67762B293CD11600EE2979 /* LatestCodable.swift in Sources */,
 				9C169708293947AE00D858AF /* APIRoutes.swift in Sources */,
+				9C67763A293DE36900EE2979 /* HistoricalRecordCodable.swift in Sources */,
 				9C67762D293CDC2000EE2979 /* BMBaseViewController.swift in Sources */,
 				9C982F8D2937A7E2003D2FB6 /* CurrencyConverterViewModel.swift in Sources */,
 				9CD86FE1293803B0002246CC /* Double+Extension.swift in Sources */,
+				9C67763E293DE94B00EE2979 /* Date+Extension.swift in Sources */,
 				9C982F7D29379474003D2FB6 /* ConvertViewController.swift in Sources */,
 				9C982F7929379474003D2FB6 /* AppDelegate.swift in Sources */,
 				9C16970E293A034C00D858AF /* BMBaseViewModel.swift in Sources */,
+				9C677634293D3BA900EE2979 /* HistoricalRecordViewController.swift in Sources */,
 				9CD86FDF29380399002246CC /* String+Extension.swift in Sources */,
+				9C677638293D3DB700EE2979 /* CellProvider.swift in Sources */,
 				9C1696FB29393CD300D858AF /* APICall.swift in Sources */,
 				9C1696FE29393E0300D858AF /* HttpStatusCode.swift in Sources */,
 				9C982F7B29379474003D2FB6 /* SceneDelegate.swift in Sources */,
 				9C1697022939437100D858AF /* BMError.swift in Sources */,
 				9C169710293A03D700D858AF /* Repository.swift in Sources */,
 				9C1697062939464000D858AF /* URLCreator.swift in Sources */,
+				9C677636293D3D0700EE2979 /* HistoricalRecordRowCell.swift in Sources */,
 				9C16970C2939F8CC00D858AF /* TodoListCodable.swift in Sources */,
 				9C16970A2939F7ED00D858AF /* TodoCodable.swift in Sources */,
 				9C677631293CDF1D00EE2979 /* UIViewController+Extension.swift in Sources */,

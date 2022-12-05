@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pr8-sj-OHm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,10 +8,29 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Currency Converter View Controller-->
+        <!--Conversion Screen-->
+        <scene sceneID="J7B-f7-ai0">
+            <objects>
+                <navigationController title="Conversion Screen" id="pr8-sj-OHm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Opq-j5-H1N">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="gBI-nF-Kte" kind="relationship" relationship="rootViewController" id="Suf-2t-h3v"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwh-47-f4N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2806" y="-60"/>
+        </scene>
+        <!--Currency list-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CurrencyConverterViewController" customModule="BankMisr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Currency list" id="BYZ-38-t0r" customClass="CurrencyConverterViewController" customModule="BankMisr" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,6 +112,7 @@
                             <constraint firstItem="ZBF-ky-L5B" firstAttribute="centerY" secondItem="g0E-uq-CXt" secondAttribute="centerY" id="xki-Dn-vpM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="beT-Ny-cOd"/>
                     <connections>
                         <outlet property="fromCurrencyView" destination="g0E-uq-CXt" id="tvC-B4-PkQ"/>
                         <outlet property="fromLabel" destination="ikc-CY-hO7" id="7jV-OR-PhA"/>
@@ -105,7 +125,68 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95.652173913043484" y="109.82142857142857"/>
+            <point key="canvasLocation" x="-1965" y="-53"/>
+        </scene>
+        <!--Historical Record View Controller-->
+        <scene sceneID="EQq-dn-qfI">
+            <objects>
+                <viewController storyboardIdentifier="HistoricalRecordViewController" id="gBI-nF-Kte" customClass="HistoricalRecordViewController" customModule="BankMisr" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2FX-Zm-Dfe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OFm-oq-zj0">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoricalRecordRowCell" id="M46-0f-I35" customClass="HistoricalRecordRowCell" customModule="BankMisr" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M46-0f-I35" id="f2J-C1-zWc">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AUD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I1-NS-TiV">
+                                                    <rect key="frame" x="12" y="11" width="28" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12.123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMx-ha-tIn">
+                                                    <rect key="frame" x="140" y="11" width="49" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="gBI-nF-Kte" id="1aX-zK-FOC"/>
+                                    <outlet property="delegate" destination="gBI-nF-Kte" id="Qby-Cl-Wzw"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Rx-fp-zdP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OFm-oq-zj0" firstAttribute="width" secondItem="2FX-Zm-Dfe" secondAttribute="width" id="JLs-Um-R4U"/>
+                            <constraint firstItem="OFm-oq-zj0" firstAttribute="leading" secondItem="6Rx-fp-zdP" secondAttribute="leading" id="Q2W-wK-ONO"/>
+                            <constraint firstItem="OFm-oq-zj0" firstAttribute="top" secondItem="6Rx-fp-zdP" secondAttribute="top" id="ZiR-FD-L2l"/>
+                            <constraint firstItem="6Rx-fp-zdP" firstAttribute="bottom" secondItem="OFm-oq-zj0" secondAttribute="bottom" id="ydD-fZ-eP7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Nd5-jJ-31K"/>
+                    <connections>
+                        <outlet property="tableView" destination="OFm-oq-zj0" id="N8T-3M-GTC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3HV-QK-gQT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1133.3333333333335" y="-44.196428571428569"/>
         </scene>
     </scenes>
     <resources>

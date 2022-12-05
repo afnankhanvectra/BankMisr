@@ -42,5 +42,13 @@ class BMBaseViewController: UIViewController {
             activityIndicator.removeFromSuperview()
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViewModelCallbacks()
+    }
+    
+    func setupViewModelCallbacks() { }
+    
 }
 
