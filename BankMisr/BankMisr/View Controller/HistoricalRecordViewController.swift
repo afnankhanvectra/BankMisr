@@ -7,28 +7,31 @@
 
 import UIKit
 
-class HistoricalRecordViewController: BMBaseViewController {
-
+class HistoricalRecordViewController: BMBaseViewController  {
+    
     //MARK: - IBOutlet
-
+    
     @IBOutlet weak var tableView: UITableView!
     
-    //TODO: Get from previous controller
+    //MARK: - Variables
     
-    private var currencyConverterViewModel: CurrencyConverterViewModel!
-
-
+    var currencyConverterViewModel: CurrencyConverterViewModel!
+    var targetdCurrencies: String!
+    
+    
     //MARK: - View controller life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.title = "Historical Record"
+        
+        
         // Do any additional setup after loading the view.
     }
     override func setupViewModelCallbacks() {
-        currencyConverterViewModel =  CurrencyConverterViewModel(repository: Repository.shared)
-        currencyConverterViewModel.callTimeSeriesRateAPI()
         
+        print("\(targetdCurrencies)")
+        targetdCurrencies = "PKR,AUD"
         currencyConverterViewModel.onStartLoading = { [weak self]  in
             guard let self = self else { return }
             self.showLoadingIndicator()
@@ -41,7 +44,17 @@ class HistoricalRecordViewController: BMBaseViewController {
                 self.showAlert(message: message)
             }
         }
-
+        
+        currencyConverterViewModel.onFinishGetHistoricalRecord = {  [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.dismissLoadingIndicator()
+                self.tableView.reloadData()
+            }
+        }
+        
+//        currencyConverterViewModel.callTimeSeriesRateAPI(with: targetdCurrencies)
+        
     }
 }
 
@@ -49,24 +62,29 @@ class HistoricalRecordViewController: BMBaseViewController {
 //MARK: - tableView Delegates
 
 extension HistoricalRecordViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return currencyConverterViewModel.getNumberOfDaysRecord()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-       // return currencyConverterViewModel.selectReloadCardListCount()
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = HistoricalRecordRowCell.dequeue(tableView, indexPath: indexPath)
-      //  cell.setContents(currencyConverterViewModel, cardIndex: indexPath.row)
+        cell.setContents(currencyConverterViewModel, recordIndex: indexPath)
         return cell
     }
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        
-    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+}
+
+
+extension HistoricalRecordViewController: ViewControllerProvider {
+    static func storyboard() -> String {
+        return "Main"
+    }
 }

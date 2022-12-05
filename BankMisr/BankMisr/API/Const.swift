@@ -11,6 +11,9 @@ public let FGET =                               "GET"
 public let FPOST =                              "POST"
 public let  FTOKEN_HEADER      =                 "apikey"
 public let  FBASE_CURRENCY      =               "USD"
+public let  FHISTORICAL_RECORD_DAYS      =        3
+
+public let  FGENERAL_ERROR      =        "Something went wrong"
 
 
 typealias VoidCallBack = (() -> Void)

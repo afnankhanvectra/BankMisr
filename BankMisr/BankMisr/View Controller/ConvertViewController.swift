@@ -25,7 +25,7 @@ class CurrencyConverterViewController: BMBaseViewController {
     @IBOutlet weak var toLabel :           UILabel!
     
     //MARK: - Variables
-
+    
     private var currencyConverterViewModel: CurrencyConverterViewModel!
     
     let disposeBag =    DisposeBag()
@@ -39,7 +39,6 @@ class CurrencyConverterViewController: BMBaseViewController {
             self.toTextField.text = "\(answer.round(to: 2))"
         }
     }
-        
     }
     var toCurrency = FBASE_CURRENCY { didSet {
         self.toLabel.text = toCurrency
@@ -56,15 +55,12 @@ class CurrencyConverterViewController: BMBaseViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Currency list"
-
-        // Do any additional setup after loading the view.
-        
         setTextFeildSubscriber()
         setCurrencyDropDown()
     }
     
     //MARK: - Layout set up
-
+    
     private func setTextFeildSubscriber () {
         
         fromTextField.rx.controlEvent([.editingChanged])
@@ -101,17 +97,21 @@ class CurrencyConverterViewController: BMBaseViewController {
             }
         }
         
-        currencyConverterViewModel.callLatestRateAPI()
-        
         currencyConverterViewModel.onFinishGetLatestCurrency = { [weak self]  in
             guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.dismissLoadingIndicator()
+            }
             self.fromDropDown.dataSource = self.currencyConverterViewModel.getCurrencyListName()
             self.toDropDown.dataSource = self.currencyConverterViewModel.getCurrencyListName()
         }
+        
+        //       currencyConverterViewModel.callLatestRateAPI()
+        
     }
     
     //MARK: - Actions
-
+    
     private func setCurrencyDropDown() {
         
         fromDropDown.anchorView = fromCurrencyView // UIView or UIBarButtonItem
@@ -151,6 +151,15 @@ class CurrencyConverterViewController: BMBaseViewController {
         let swap = fromCurrency
         fromCurrency = toCurrency
         toCurrency = swap
+    }
+    
+    @IBAction func detailsButtonTapped(_ sender: Any) {
+        
+        let historicalRecordViewController = HistoricalRecordViewController.viewController()
+        historicalRecordViewController.currencyConverterViewModel = currencyConverterViewModel
+        historicalRecordViewController.targetdCurrencies = fromCurrency + "," + toCurrency
+        self.navigationController?.pushViewController(historicalRecordViewController, animated: true)
+        
     }
     
 }

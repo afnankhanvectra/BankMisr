@@ -10,8 +10,11 @@ import Foundation
 class CurrencyConverterViewModel : BMBaseViewModel {
     
     private var currencyModelArray = [CurrencyModel]()
-    var onFinishGetLatestCurrency: VoidCallBack?
     
+    private var historicalRecordModelArray = [HistoricalRecordModel]()
+    
+    var onFinishGetLatestCurrency: VoidCallBack?
+    var onFinishGetHistoricalRecord: VoidCallBack?
     
     override init(repository: RepositoryProtocol) {
         super.init(repository: repository)
@@ -25,6 +28,18 @@ class CurrencyConverterViewModel : BMBaseViewModel {
         onFinishGetLatestCurrency?()
     }
     
+    private func saveHistoryRatesRecord(_ historicalRecordCodable :  HistoricalRecordCodable){
+        for (date, record) in historicalRecordCodable.rates {
+            var structRecord = HistoricalRecordModel()
+            structRecord.date = date
+            for (currencySymbol, value) in record {
+                structRecord.currencyValues.append((currencySymbol,value))
+            }
+            historicalRecordModelArray.append(structRecord)
+        }
+        print("Record is loaded \(historicalRecordModelArray)")
+        onFinishGetHistoricalRecord?()
+    }
     
     func getCurrencyListName() -> [String] {
         return currencyModelArray.map({$0.name})
@@ -43,29 +58,40 @@ class CurrencyConverterViewModel : BMBaseViewModel {
         return  currencyModelArray.filter({$0.name == name}).first!.currencySymbol
     }
     
+    func getNumberOfDaysRecord() -> Int {
+        return  historicalRecordModelArray.count
+    }
+    
+    //MARK: - API calls
+    
     func callLatestRateAPI() {
+        
         onStartLoading?()
         repository.callFixerLatestAPI {[weak self] latestCodable in
             guard let self = self else { return }
-            
-            print(latestCodable)
             if latestCodable.success == true {
                 self.saveLatestCodabeValue(latestCodable)
+            } else {
+                self.onFinishWithError?(FGENERAL_ERROR)
             }
         } failHandler: {[weak self] error in
             guard let self = self else { return }
-            self.onFinishWithError?(error?.localizedDescription ?? "Something wrong")
+            self.onFinishWithError?(error?.localizedDescription ?? FGENERAL_ERROR)
         }
     }
     
-    func callTimeSeriesRateAPI(with symbols: String) {
+    func callTimeSeriesRateAPI(with targetCurrencies: String) {
         onStartLoading?()
-        repository.callFixerTimeSeriesAPI {[weak self] historicalRecordCodable in
+        repository.callFixerTimeSeriesAPI(targetedCurrencies: targetCurrencies) {[weak self] historicalRecordCodable in
             guard let self = self else { return }
-            print(historicalRecordCodable)
+            if historicalRecordCodable.success == true {
+                self.saveHistoryRatesRecord(historicalRecordCodable)
+            } else {
+                self.onFinishWithError?(FGENERAL_ERROR)
+            }
         } failHandler: {[weak self] error in
             guard let self = self else { return }
-            self.onFinishWithError?(error?.localizedDescription ?? "Something wrong")
+            self.onFinishWithError?(error?.localizedDescription ?? FGENERAL_ERROR)
         }
     }
     

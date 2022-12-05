@@ -17,7 +17,7 @@ protocol RepositoryProtocol {
     func callFixerLatestAPI(successHandler: @escaping ((LatestCodable) -> Void),
                             failHandler: @escaping ((BMError?) -> Void))
     
-    func callFixerTimeSeriesAPI(successHandler: @escaping ((HistoricalRecordCodable) -> Void),
+    func callFixerTimeSeriesAPI(targetedCurrencies: String, successHandler: @escaping ((HistoricalRecordCodable) -> Void),
                                 failHandler: @escaping ((BMError?) -> Void))
 }
 
@@ -52,10 +52,10 @@ class Repository: RepositoryProtocol {
     }
     
     
-    func callFixerTimeSeriesAPI(successHandler: @escaping ((HistoricalRecordCodable) -> Void),
+    func callFixerTimeSeriesAPI(targetedCurrencies: String, successHandler: @escaping ((HistoricalRecordCodable) -> Void),
                                 failHandler: @escaping ((BMError?) -> Void)) {
         
-        let apiRequest = ApiCall<HistoricalRecordCodable>(url: URLCreator.getHistoricalRecord(), successHandler: {  (historicalRecordCodable: HistoricalRecordCodable) -> Void  in
+        let apiRequest = ApiCall<HistoricalRecordCodable>(url: URLCreator.getHistoricalRecord(symbols: targetedCurrencies), successHandler: {  (historicalRecordCodable: HistoricalRecordCodable) -> Void  in
             successHandler(historicalRecordCodable)
             
         }) { (httpStatusCode: HttpStatusCode, errorMessage: BMError?) in

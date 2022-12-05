@@ -20,7 +20,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="gBI-nF-Kte" kind="relationship" relationship="rootViewController" id="Suf-2t-h3v"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="LkT-F4-Svn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cwh-47-f4N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0E-uq-CXt">
-                                <rect key="frame" x="20" y="64" width="109" height="54"/>
+                                <rect key="frame" x="20" y="108" width="109" height="54"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikc-CY-hO7">
                                         <rect key="frame" x="5" y="36" width="31" height="18"/>
@@ -53,7 +53,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-ky-L5B" userLabel="To Currency View">
-                                <rect key="frame" x="285" y="64" width="109" height="54"/>
+                                <rect key="frame" x="285" y="108" width="109" height="54"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5SX-SQ-AoR" userLabel="To">
                                         <rect key="frame" x="5" y="36" width="31" height="18"/>
@@ -69,7 +69,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3Z-Uu-mPR" userLabel="swap button">
-                                <rect key="frame" x="186.5" y="85" width="41" height="41.5"/>
+                                <rect key="frame" x="186.5" y="132" width="41" height="41.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="t3Z-Uu-mPR" secondAttribute="height" multiplier="1:1" id="8aB-LU-usP"/>
                                 </constraints>
@@ -80,22 +80,32 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="BpZ-CB-Pbg">
-                                <rect key="frame" x="20" y="138" width="109" height="34"/>
+                                <rect key="frame" x="20" y="182" width="109" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Qiy-ei-aJi">
-                                <rect key="frame" x="291" y="138" width="97" height="34"/>
+                                <rect key="frame" x="291" y="182" width="97" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvc-qh-Bxv">
+                                <rect key="frame" x="172.5" y="236" width="69" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Details"/>
+                                <connections>
+                                    <action selector="detailsButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LkN-Is-nIM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="g0E-uq-CXt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="0bT-lQ-oCH"/>
+                            <constraint firstItem="vvc-qh-Bxv" firstAttribute="top" secondItem="Qiy-ei-aJi" secondAttribute="bottom" constant="20" id="4RM-QL-1l6"/>
                             <constraint firstItem="Qiy-ei-aJi" firstAttribute="centerX" secondItem="ZBF-ky-L5B" secondAttribute="centerX" id="Asf-qi-6dn"/>
                             <constraint firstItem="g0E-uq-CXt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ENv-eC-uOd"/>
+                            <constraint firstItem="vvc-qh-Bxv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IZS-mp-764"/>
                             <constraint firstItem="t3Z-Uu-mPR" firstAttribute="bottom" secondItem="g0E-uq-CXt" secondAttribute="bottom" multiplier="1.07" id="SCv-cw-SDc"/>
                             <constraint firstItem="t3Z-Uu-mPR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.1" id="Uf6-Oq-pbO"/>
                             <constraint firstItem="Qiy-ei-aJi" firstAttribute="height" secondItem="BpZ-CB-Pbg" secondAttribute="height" id="YIl-PN-6lw"/>
@@ -136,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OFm-oq-zj0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoricalRecordRowCell" id="M46-0f-I35" customClass="HistoricalRecordRowCell" customModule="BankMisr" customModuleProvider="target">

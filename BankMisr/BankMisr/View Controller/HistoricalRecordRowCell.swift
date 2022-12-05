@@ -17,5 +17,9 @@ class HistoricalRecordRowCell: UITableViewCell, CellProvider {
         super.setSelected(selected, animated: animated)
 
     }
+    func setContents(_ data: CurrencyConverterViewModel, recordIndex: IndexPath) {
+        
+
+    }
 
 }

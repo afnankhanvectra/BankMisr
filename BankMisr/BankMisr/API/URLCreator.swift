@@ -22,8 +22,8 @@ struct URLCreator {
         return  URL(string:APIRoutes.getConfig.baseURL  + "latest?symbols=\(getCurrenciesSymbol())&base=\(FBASE_CURRENCY)")!
     }
     
-    static internal func getHistoricalRecord() -> URL {
-        return  URL(string:APIRoutes.getConfig.baseURL  + "timeseries?start_date=\(Date().getDate(withGap: -3).toString())&end_date=\(Date().toString())&base=\(FBASE_CURRENCY)")!
+    static internal func getHistoricalRecord(symbols: String) -> URL {
+        return  URL(string:APIRoutes.getConfig.baseURL  + "timeseries?symbols=\(symbols)&start_date=\(Date().getDate(withGap: -FHISTORICAL_RECORD_DAYS).toString())&end_date=\(Date().toString())&base=\(FBASE_CURRENCY)")!
     }
     
     static private func getCurrenciesSymbol() -> String {
